@@ -53,11 +53,11 @@ window.addEventListener('scroll', () => {
 
 
 // ── Mobile Menu ───────────────────────────────────────────────────────────
-const hamburger     = document.getElementById('hamburger');
-const mobileMenu    = document.getElementById('mobileMenu');
-const mobileClose   = document.getElementById('mobileClose');
-const menuOverlay   = document.getElementById('menuOverlay');
-const mobileLinks   = document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+const menuOverlay = document.getElementById('menuOverlay');
+const mobileLinks = document.querySelectorAll('.mobile-menu__link, .mobile-menu__cta');
 
 function openMenu() {
   mobileMenu.classList.add('open');
@@ -106,7 +106,7 @@ document.getElementById('scrollTop').addEventListener('click', () => {
 
 // ── Active nav link highlighting ──────────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');
-const navLinks  = document.querySelectorAll('.nav__link');
+const navLinks = document.querySelectorAll('.nav__link');
 
 const activeLinkObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -129,9 +129,9 @@ sections.forEach(s => activeLinkObserver.observe(s));
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  const btn     = document.getElementById('submitBtn');
+  const btn = document.getElementById('submitBtn');
   const success = document.getElementById('formSuccess');
-  const form    = document.getElementById('contactForm');
+  const form = document.getElementById('contactForm');
 
   // Show loading state
   btn.disabled = true;
@@ -185,9 +185,9 @@ const tiltCards = document.querySelectorAll('.tournament__block, .why__item');
 
 tiltCards.forEach(card => {
   card.addEventListener('mousemove', (e) => {
-    const rect   = card.getBoundingClientRect();
-    const x      = (e.clientX - rect.left) / rect.width  - 0.5;
-    const y      = (e.clientY - rect.top)  / rect.height - 0.5;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
     card.style.transform = `translateY(-6px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
   });
   card.addEventListener('mouseleave', () => {
