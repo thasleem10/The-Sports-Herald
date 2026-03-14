@@ -8,17 +8,22 @@
 
 /* ── CSS Custom Properties ────────────────────── */
 :root {
-  --color-deep-blue:     #0F172A;
-  --color-red:           #EF4444;
-  --color-electric-blue: #2563EB;
+  /* Primary black/white palette as per brand logo */
+  --color-deep-blue:     #111111;
+  --color-red:           #111111;
+  --color-electric-blue: #333333;
+  --color-black:         #111111;
   --color-white:         #FFFFFF;
-  --color-gray-light:    #F3F4F6;
-  --color-text:          #111827;
-  --color-text-muted:    #6B7280;
-  --color-border:        #E5E7EB;
+  --color-bg:            #f4f0ec;
+  --color-gray-light:    #f4f0ec;
+  --color-text:          #111111;
+  --color-text-muted:    #555555;
+  --color-border:        #d6d0c8;
+  --color-accent:        #111111;
 
-  --font-heading: 'Oswald', 'Bebas Neue', sans-serif;
-  --font-body:    'Inter', sans-serif;
+  --font-heading:  'March', 'Oswald', 'Bebas Neue', sans-serif;
+  --font-logo:     'March', serif;
+  --font-body:     'Inter', sans-serif;
 
   --radius-sm:  6px;
   --radius-md:  12px;
@@ -43,14 +48,14 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
   color: var(--color-text);
-  background: var(--color-white);
+  background: var(--color-bg);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
-button { cursor: pointer; border: none; background: none; font-inherit: inherit; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ── Utility ──────────────────────────────────── */
 .container {
@@ -60,12 +65,12 @@ button { cursor: pointer; border: none; background: none; font-inherit: inherit;
   padding: 0 var(--container-pad);
 }
 
-.text--accent   { color: var(--color-red); }
+.text--accent   { color: var(--color-accent); }
 .text--blue     { color: var(--color-electric-blue); }
 
 .section { padding: clamp(4rem, 8vw, 7rem) 0; }
-.section--dark  { background: var(--color-deep-blue); }
-.section--gray  { background: var(--color-gray-light); }
+.section--dark  { background: var(--color-black); }
+.section--gray  { background: var(--color-bg); }
 
 .section__header {
   text-align: center;
@@ -208,25 +213,30 @@ button { cursor: pointer; border: none; background: none; font-inherit: inherit;
 .nav__logo {
   display: flex;
   align-items: center;
-  gap: .5rem;
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
+  gap: .65rem;
+  text-decoration: none;
+}
+.nav__logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  /* Invert on dark nav background to keep logo visible */
+  filter: invert(1) brightness(2);
+  transition: filter var(--transition);
+}
+/* When nav scrolls over light backgrounds, logo stays white invert */
+.nav.scrolled .nav__logo-img {
+  filter: invert(1) brightness(2);
+}
+.nav__logo-text {
+  font-family: 'March', 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-white);
-  letter-spacing: .06em;
+  letter-spacing: .1em;
   text-transform: uppercase;
+  line-height: 1;
 }
-.nav__logo-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--color-red);
-  border-radius: 6px;
-  font-size: 1rem;
-}
-.nav__logo-text strong { color: var(--color-red); margin-left: .15rem; }
 
 .nav__links {
   display: flex;
@@ -790,7 +800,7 @@ button { cursor: pointer; border: none; background: none; font-inherit: inherit;
   padding: 2rem 1.75rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
-  background: var(--color-white);
+  background: #faf8f5;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -1075,26 +1085,25 @@ a.contact__detail-value:hover { text-decoration: underline; }
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: .5rem;
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-white);
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  gap: .6rem;
   margin-bottom: .75rem;
 }
-.footer__logo-icon {
-  width: 32px;
+.footer__logo-img {
   height: 32px;
-  background: var(--color-red);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .9rem;
+  width: auto;
+  object-fit: contain;
+  /* Keep logo white on dark footer background */
+  filter: invert(1) brightness(2);
 }
-.footer__logo-text strong { color: var(--color-red); }
+.footer__logo-text {
+  font-family: 'March', 'Oswald', 'Bebas Neue', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
 
 .footer__tagline {
   font-size: .85rem;
