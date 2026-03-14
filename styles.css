@@ -8,7 +8,7 @@
 
 /* ── CSS Custom Properties ────────────────────── */
 :root {
-  --color-deep-blue: #0F172A;
+  --color-deep-blue: #111827;
   --color-red: #EF4444;
   --color-electric-blue: #2563EB;
   --color-white: #FFFFFF;
@@ -258,7 +258,7 @@ button {
 }
 
 .nav.scrolled {
-  background: rgba(15, 23, 42, .96);
+  background: var(--color-deep-blue);
   backdrop-filter: blur(18px);
   box-shadow: 0 2px 32px rgba(0, 0, 0, .25);
 }
@@ -297,6 +297,7 @@ button {
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .nav__logo-icon-img {
   width: 100%;
   height: 100%;
@@ -1365,6 +1366,7 @@ a.contact__detail-value:hover {
   overflow: hidden;
   flex-shrink: 0;
 }
+
 .footer__logo-icon-img {
   width: 100%;
   height: 100%;
