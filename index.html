@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Sports Herald — Your daily destination for sports news, match coverage, IPL, Cricket World Cup, Football World Cup, and the biggest moments in global sports." />
+  <meta name="keywords" content="sports news, IPL, Cricket World Cup, Football World Cup, sports magazine, India sports, sports coverage" />
+  <meta property="og:title" content="The Sports Herald — Where Every Game Has a Story." />
+  <meta property="og:description" content="Fast, modern, youth-focused digital sports magazine delivering engaging sports stories and tournament coverage 24/7." />
+  <meta property="og:type" content="website" />
+  <title>The Sports Herald — Where Every Game Has a Story.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav" id="navbar">
+    <div class="nav__container">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-icon">⚡</span>
+        <span class="nav__logo-text">THE SPORTS <strong>HERALD</strong></span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#coverage" class="nav__link">Coverage</a></li>
+        <li><a href="#tournaments" class="nav__link">Tournaments</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li><a href="#contact" class="nav__cta-link">Read Now</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#about" class="mobile-menu__link">About</a></li>
+      <li><a href="#coverage" class="mobile-menu__link">Coverage</a></li>
+      <li><a href="#tournaments" class="mobile-menu__link">Tournaments</a></li>
+      <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn--primary mobile-menu__cta">Start Reading</a>
+  </div>
+  <div class="mobile-menu__overlay" id="menuOverlay"></div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="images/hero.png" alt="Sports Stadium" class="hero__img" />
+      <div class="hero__overlay"></div>
+      <!-- Animated noise texture -->
+      <div class="hero__grain"></div>
+    </div>
+
+    <!-- Floating live badge -->
+    <div class="hero__live-badge reveal-up">
+      <span class="hero__live-dot"></span>
+      LIVE UPDATES 24/7
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow reveal-up">India's Premier Digital Sports Magazine</div>
+      <h1 class="hero__headline reveal-up">
+        Where Every<br /><em>Game</em> Has a<br />Story.
+      </h1>
+      <p class="hero__subheadline reveal-up">
+        Your daily destination for sports news, match coverage, and the biggest moments from <strong>IPL</strong>, <strong>Cricket World Cup</strong>, <strong>Football World Cup</strong>, and global sports.
+      </p>
+      <div class="hero__cta-group reveal-up">
+        <a href="#coverage" class="btn btn--primary btn--lg">Read Latest News</a>
+        <a href="#tournaments" class="btn btn--ghost btn--lg">Explore Sports Stories</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero__stats reveal-up">
+        <div class="hero__stat">
+          <span class="hero__stat-num">24/7</span>
+          <span class="hero__stat-label">Coverage</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">IPL</span>
+          <span class="hero__stat-label">Live Updates</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <span class="hero__stat-num">WC</span>
+          <span class="hero__stat-label">Full Coverage</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll-indicator">
+      <span>SCROLL</span>
+      <div class="hero__scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER TAPE ===== -->
+  <section class="ticker">
+    <div class="ticker__label">🔴 BREAKING</div>
+    <div class="ticker__track">
+      <div class="ticker__items">
+        <span>IPL 2025 Season Kicks Off with Record-Breaking Viewership &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>India vs Australia — Champions Trophy Final Coverage &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>Football World Cup 2026 Qualifiers: Latest Results &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>Rohit Sharma Breaks Yet Another Batting Record &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>The Sports Herald — Your Source for Sports News &amp; Stories &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>IPL 2025 Season Kicks Off with Record-Breaking Viewership &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>India vs Australia — Champions Trophy Final Coverage &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>Football World Cup 2026 Qualifiers: Latest Results &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>Rohit Sharma Breaks Yet Another Batting Record &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        <span>The Sports Herald — Your Source for Sports News &amp; Stories &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__text-col">
+          <div class="section__eyebrow reveal-up">Who We Are</div>
+          <h2 class="section__title reveal-up">About The Sports Herald</h2>
+          <p class="about__body reveal-up">
+            <strong>The Sports Herald</strong> is a modern digital sports magazine dedicated to delivering the latest sports news, match coverage, and powerful sports stories.
+          </p>
+          <p class="about__body reveal-up">
+            From the electrifying action of the <strong>Indian Premier League</strong> to the global excitement of the <strong>Cricket World Cup</strong> and <strong>Football World Cup</strong>, we bring fans closer to the games they love.
+          </p>
+          <p class="about__body reveal-up">
+            Built for the new generation of sports fans, The Sports Herald focuses on delivering fast, engaging, and insightful sports content that keeps readers connected to the world of sports <strong>24/7</strong>.
+          </p>
+          <a href="#coverage" class="btn btn--primary reveal-up" style="margin-top: 1.5rem; display: inline-flex;">Explore Our Coverage</a>
+        </div>
+        <div class="about__visual-col reveal-up">
+          <div class="about__card-stack">
+            <div class="about__card about__card--1">
+              <div class="about__card-icon">🏏</div>
+              <div class="about__card-label">Cricket Coverage</div>
+            </div>
+            <div class="about__card about__card--2">
+              <div class="about__card-icon">⚽</div>
+              <div class="about__card-label">Football Stories</div>
+            </div>
+            <div class="about__card about__card--3">
+              <div class="about__card-icon">🏆</div>
+              <div class="about__card-label">Tournament Updates</div>
+            </div>
+            <div class="about__badge">
+              <span class="about__badge-num">24/7</span>
+              <span class="about__badge-text">Sports News</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COVERAGE SECTION ===== -->
+  <section class="coverage section section--dark" id="coverage">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__eyebrow section__eyebrow--light">Our Content</div>
+        <h2 class="section__title section__title--light">What We Cover</h2>
+        <p class="section__subtitle section__subtitle--light">From the IPL to the world stage — we've got every game covered.</p>
+      </div>
+      <div class="coverage__grid">
+        <!-- Card 1: IPL -->
+        <article class="coverage__card reveal-up">
+          <div class="coverage__card-img">
+            <img src="images/ipl.png" alt="IPL Cricket Coverage" />
+            <div class="coverage__card-badge">IPL</div>
+          </div>
+          <div class="coverage__card-body">
+            <div class="coverage__card-tag">League Cricket</div>
+            <h3 class="coverage__card-title">IPL Coverage</h3>
+            <p class="coverage__card-desc">Match updates, player performances, and exclusive insights from the Indian Premier League.</p>
+            <a href="#" class="coverage__card-link">Read More <span>→</span></a>
+          </div>
+        </article>
+        <!-- Card 2: Cricket WC -->
+        <article class="coverage__card reveal-up">
+          <div class="coverage__card-img">
+            <img src="images/cricket-wc.png" alt="Cricket World Cup Coverage" />
+            <div class="coverage__card-badge">WC</div>
+          </div>
+          <div class="coverage__card-body">
+            <div class="coverage__card-tag">World Cricket</div>
+            <h3 class="coverage__card-title">Cricket World Cup</h3>
+            <p class="coverage__card-desc">Complete coverage of the biggest cricket tournament in the world — every match, every moment.</p>
+            <a href="#" class="coverage__card-link">Read More <span>→</span></a>
+          </div>
+        </article>
+        <!-- Card 3: Football WC -->
+        <article class="coverage__card reveal-up">
+          <div class="coverage__card-img">
+            <img src="images/football-wc.png" alt="Football World Cup Coverage" />
+            <div class="coverage__card-badge">FIFA</div>
+          </div>
+          <div class="coverage__card-body">
+            <div class="coverage__card-tag">World Football</div>
+            <h3 class="coverage__card-title">Football World Cup</h3>
+            <p class="coverage__card-desc">Stories, match analysis, and highlights from the global football stage.</p>
+            <a href="#" class="coverage__card-link">Read More <span>→</span></a>
+          </div>
+        </article>
+        <!-- Card 4: Daily News -->
+        <article class="coverage__card reveal-up">
+          <div class="coverage__card-img coverage__card-img--dark">
+            <div class="coverage__news-mockup">
+              <div class="coverage__news-line"></div>
+              <div class="coverage__news-line coverage__news-line--short"></div>
+              <div class="coverage__news-line"></div>
+              <div class="coverage__news-line coverage__news-line--short"></div>
+              <div class="coverage__news-line"></div>
+            </div>
+            <div class="coverage__card-badge">LIVE</div>
+          </div>
+          <div class="coverage__card-body">
+            <div class="coverage__card-tag">Daily Updates</div>
+            <h3 class="coverage__card-title">Daily Sports News</h3>
+            <p class="coverage__card-desc">Breaking news and updates from cricket, football, and other major sports — delivered fast.</p>
+            <a href="#" class="coverage__card-link">Read More <span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US SECTION ===== -->
+  <section class="why section" id="why">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__eyebrow">Why Choose Us</div>
+        <h2 class="section__title">Why Sports Fans Choose<br /><span class="text--accent">The Sports Herald</span></h2>
+      </div>
+      <div class="why__grid">
+        <div class="why__item reveal-up">
+          <div class="why__icon">⚡</div>
+          <h3 class="why__title">Fast Sports Updates</h3>
+          <p class="why__desc">Get sports news as it happens. No delays, no wait — straight to you, instantly.</p>
+        </div>
+        <div class="why__item reveal-up">
+          <div class="why__icon">🎯</div>
+          <h3 class="why__title">Youth-Focused Content</h3>
+          <p class="why__desc">Designed for modern sports fans and students who live and breathe sports every day.</p>
+        </div>
+        <div class="why__item reveal-up">
+          <div class="why__icon">🌍</div>
+          <h3 class="why__title">Global Sports Coverage</h3>
+          <p class="why__desc">From IPL to the biggest world tournaments — we cover them all, no matter the timezone.</p>
+        </div>
+        <div class="why__item reveal-up">
+          <div class="why__icon">📖</div>
+          <h3 class="why__title">Engaging Sports Stories</h3>
+          <p class="why__desc">Beyond scores — stories that capture the passion, drama, and spirit of sports.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOURNAMENTS SECTION ===== -->
+  <section class="tournaments section section--gray" id="tournaments">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <div class="section__eyebrow">Featured</div>
+        <h2 class="section__title">Featured Tournaments</h2>
+        <p class="section__subtitle">The biggest stages in sports — covered with passion and precision.</p>
+      </div>
+      <div class="tournaments__grid">
+        <!-- IPL -->
+        <div class="tournament__block reveal-up">
+          <div class="tournament__img-wrap">
+            <img src="images/ipl.png" alt="IPL 2025" class="tournament__img" />
+            <div class="tournament__img-overlay">
+              <div class="tournament__label">🏏 IPL</div>
+            </div>
+          </div>
+          <div class="tournament__content">
+            <div class="tournament__season">Season 2025</div>
+            <h3 class="tournament__title">Indian Premier League</h3>
+            <p class="tournament__desc">The world's most-watched cricket league. Every match, every six, every wicket — covered live.</p>
+            <a href="#" class="btn btn--primary btn--sm">View Coverage</a>
+          </div>
+        </div>
+        <!-- Cricket WC -->
+        <div class="tournament__block reveal-up">
+          <div class="tournament__img-wrap">
+            <img src="images/cricket-wc.png" alt="Cricket World Cup" class="tournament__img" />
+            <div class="tournament__img-overlay">
+              <div class="tournament__label">🏆 CWC</div>
+            </div>
+          </div>
+          <div class="tournament__content">
+            <div class="tournament__season">ICC Tournament</div>
+            <h3 class="tournament__title">Cricket World Cup</h3>
+            <p class="tournament__desc">The pinnacle of international cricket. Complete coverage of every group stage to the grand final.</p>
+            <a href="#" class="btn btn--primary btn--sm">View Coverage</a>
+          </div>
+        </div>
+        <!-- Football WC -->
+        <div class="tournament__block reveal-up">
+          <div class="tournament__img-wrap">
+            <img src="images/football-wc.png" alt="Football World Cup" class="tournament__img" />
+            <div class="tournament__img-overlay">
+              <div class="tournament__label">⚽ FIFA</div>
+            </div>
+          </div>
+          <div class="tournament__content">
+            <div class="tournament__season">FIFA 2026</div>
+            <h3 class="tournament__title">Football World Cup</h3>
+            <p class="tournament__desc">The biggest sporting event on the planet. Stories, analysis, and drama from every corner of the globe.</p>
+            <a href="#" class="btn btn--primary btn--sm">View Coverage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="cta-section__bg"></div>
+    <div class="container">
+      <div class="cta-section__content reveal-up">
+        <div class="cta-section__eyebrow">Join The Herald</div>
+        <h2 class="cta-section__headline">Never Miss a<br /><em>Moment</em> in Sports</h2>
+        <p class="cta-section__sub">Stay updated with the latest sports news, stories, and tournament coverage — all in one place, always on.</p>
+        <a href="#contact" class="btn btn--white btn--lg">Start Reading</a>
+      </div>
+      <!-- Decorative sport emojis -->
+      <div class="cta-section__deco" aria-hidden="true">
+        <span>🏏</span><span>⚽</span><span>🏆</span><span>🎯</span><span>🔥</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact__grid">
+        <div class="contact__info reveal-up">
+          <div class="section__eyebrow">Reach Out</div>
+          <h2 class="section__title">Get In Touch</h2>
+          <p class="contact__desc">For enquiries, collaborations, or content contributions — we'd love to hear from passionate sports fans and creators.</p>
+          <div class="contact__details">
+            <div class="contact__detail-item">
+              <span class="contact__detail-icon">📧</span>
+              <div>
+                <div class="contact__detail-label">Email Us</div>
+                <a href="mailto:writetosportsherald@gmail.com" class="contact__detail-value">writetosportsherald@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-icon">🕐</span>
+              <div>
+                <div class="contact__detail-label">Operating Hours</div>
+                <div class="contact__detail-value">24/7 — We Never Sleep</div>
+              </div>
+            </div>
+            <div class="contact__detail-item">
+              <span class="contact__detail-icon">📍</span>
+              <div>
+                <div class="contact__detail-label">Based In</div>
+                <div class="contact__detail-value">India — Globally Relevant</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact__form-col reveal-up">
+          <form class="contact__form" id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="form__group">
+              <label for="name" class="form__label">Your Name</label>
+              <input type="text" id="name" name="name" class="form__input" placeholder="John Doe" required />
+            </div>
+            <div class="form__group">
+              <label for="email" class="form__label">Email Address</label>
+              <input type="email" id="email" name="email" class="form__input" placeholder="you@example.com" required />
+            </div>
+            <div class="form__group">
+              <label for="subject" class="form__label">Subject</label>
+              <select id="subject" name="subject" class="form__input form__select" required>
+                <option value="">Select a topic</option>
+                <option>General Enquiry</option>
+                <option>Content Collaboration</option>
+                <option>Advertising & Partnership</option>
+                <option>Press & Media</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label for="message" class="form__label">Message</label>
+              <textarea id="message" name="message" class="form__input form__textarea" placeholder="Tell us what's on your mind..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full" id="submitBtn">Send Message</button>
+            <div class="form__success" id="formSuccess">
+              ✅ Thanks! Your message has been sent. We'll get back to you soon.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <span class="footer__logo-icon">⚡</span>
+            <span class="footer__logo-text">THE SPORTS <strong>HERALD</strong></span>
+          </div>
+          <p class="footer__tagline">Your source for sports news &amp; stories!</p>
+          <p class="footer__micro">India's fast, modern, youth-focused digital sports magazine covering IPL, Cricket World Cup, Football World Cup, and global sports 24/7.</p>
+        </div>
+        <div class="footer__links-col">
+          <h4 class="footer__col-title">Quick Links</h4>
+          <ul class="footer__links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#coverage">What We Cover</a></li>
+            <li><a href="#tournaments">Tournaments</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__links-col">
+          <h4 class="footer__col-title">Coverage</h4>
+          <ul class="footer__links">
+            <li><a href="#">IPL 2025</a></li>
+            <li><a href="#">Cricket World Cup</a></li>
+            <li><a href="#">Football World Cup</a></li>
+            <li><a href="#">Daily Sports News</a></li>
+          </ul>
+        </div>
+        <div class="footer__links-col">
+          <h4 class="footer__col-title">Connect</h4>
+          <a href="mailto:writetosportsherald@gmail.com" class="footer__email">writetosportsherald@gmail.com</a>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="footer__social" aria-label="Twitter / X" title="Twitter / X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="footer__social" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+            <a href="#" class="footer__social" aria-label="Facebook" title="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 <strong>The Sports Herald</strong> — Your Source for Sports News &amp; Stories</p>
+        <p class="footer__bottom-right">Made with ❤️ for sports fans everywhere</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
