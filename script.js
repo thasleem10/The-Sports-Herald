@@ -227,13 +227,42 @@ if (newsImages.length > 0) {
   lightbox.appendChild(lightboxClose);
   document.body.appendChild(lightbox);
   
-  // Open lightbox on image click
+  let isZoomed = false;
+
+  function updateTransformOrigin(e) {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    lightboxImg.style.transformOrigin = `${x}% ${y}%`;
+  }
+
+  // Handle zooming and panning
+  lightboxImg.addEventListener('click', (e) => {
+    e.stopPropagation();
+    isZoomed = !isZoomed;
+    if (isZoomed) {
+      lightboxImg.classList.add('zoomed');
+      updateTransformOrigin(e);
+    } else {
+      lightboxImg.classList.remove('zoomed');
+      setTimeout(() => {
+        if (!isZoomed) lightboxImg.style.transformOrigin = 'center center';
+      }, 300);
+    }
+  });
+
+  lightbox.addEventListener('mousemove', (e) => {
+    if (isZoomed) {
+      updateTransformOrigin(e);
+    }
+  });
+
+  // Open lightbox on grid image click
   newsImages.forEach(img => {
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', () => {
       lightboxImg.src = img.src;
       lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // prevent scrolling behind modal
+      document.body.style.overflow = 'hidden'; 
     });
   });
   
@@ -241,11 +270,13 @@ if (newsImages.length > 0) {
   const closeLightbox = () => {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    isZoomed = false;
+    lightboxImg.classList.remove('zoomed');
+    lightboxImg.style.transformOrigin = 'center center';
   };
   
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => {
-    // Only close if clicking the actual overlay background, not the image itself
     if (e.target === lightbox) closeLightbox();
   });
   

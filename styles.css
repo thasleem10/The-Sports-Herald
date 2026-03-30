@@ -1580,11 +1580,17 @@ a.contact__detail-value:hover {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-xl);
   transform: scale(0.95);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1), transform-origin 0.1s ease-out;
+  cursor: zoom-in;
 }
 
 .lightbox.active .lightbox__img {
   transform: scale(1);
+}
+
+.lightbox__img.zoomed {
+  transform: scale(2.25);
+  cursor: zoom-out;
 }
 
 .lightbox__close {
