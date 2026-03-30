@@ -207,3 +207,52 @@ document.querySelectorAll('.hero .reveal-up').forEach((el, i) => {
     el.classList.add('is-visible');
   }, 200 + i * 150);
 });
+
+// ── Lightbox for News Images ──────────────────────────────────────────────
+const newsImages = document.querySelectorAll('.news-img');
+if (newsImages.length > 0) {
+  // Create lightbox elements
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox';
+  
+  const lightboxImg = document.createElement('img');
+  lightboxImg.className = 'lightbox__img';
+  
+  const lightboxClose = document.createElement('button');
+  lightboxClose.className = 'lightbox__close';
+  lightboxClose.innerHTML = '✕';
+  lightboxClose.setAttribute('aria-label', 'Close image');
+  
+  lightbox.appendChild(lightboxImg);
+  lightbox.appendChild(lightboxClose);
+  document.body.appendChild(lightbox);
+  
+  // Open lightbox on image click
+  newsImages.forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // prevent scrolling behind modal
+    });
+  });
+  
+  // Close lightbox
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    // Only close if clicking the actual overlay background, not the image itself
+    if (e.target === lightbox) closeLightbox();
+  });
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+}
