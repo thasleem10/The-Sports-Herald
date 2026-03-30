@@ -1515,6 +1515,43 @@ a.contact__detail-value:hover {
   transform: translateY(-2px);
 }
 
+/* ── NEWS PAGE ────────────────────────────────── */
+.news .section__header {
+  margin-bottom: 3rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.news-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--color-gray-light);
+  aspect-ratio: 4 / 5;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.news-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.news-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.news-item:hover .news-img {
+  transform: scale(1.05);
+}
+
 /* ── RESPONSIVE ───────────────────────────────── */
 
 /* Tablet and below */
