@@ -334,26 +334,58 @@ if (pointsTableTabs && pointsTableContainer) {
     `;
   }
 
+  const teamLogos = {
+    "Rajasthan Royals": { short: "RR", logo: "https://upload.wikimedia.org/wikipedia/en/6/60/Rajasthan_Royals_Logo.svg" },
+    "Kings XI Punjab": { short: "KXIP", logo: "https://upload.wikimedia.org/wikipedia/en/d/d4/Punjab_Kings_Logo.svg" },
+    "Punjab Kings": { short: "PBKS", logo: "https://upload.wikimedia.org/wikipedia/en/d/d4/Punjab_Kings_Logo.svg" },
+    "Chennai Super Kings": { short: "CSK", logo: "https://upload.wikimedia.org/wikipedia/en/2/2b/Chennai_Super_Kings_Logo.svg" },
+    "Delhi Daredevils": { short: "DD", logo: "https://upload.wikimedia.org/wikipedia/en/f/f5/Delhi_Capitals_Logo.svg" },
+    "Delhi Capitals": { short: "DC", logo: "https://upload.wikimedia.org/wikipedia/en/f/f5/Delhi_Capitals_Logo.svg" },
+    "Kolkata Knight Riders": { short: "KKR", logo: "https://upload.wikimedia.org/wikipedia/en/4/4c/Kolkata_Knight_Riders_Logo.svg" },
+    "Mumbai Indians": { short: "MI", logo: "https://upload.wikimedia.org/wikipedia/en/c/cd/Mumbai_Indians_Logo.svg" },
+    "Royal Challengers Bangalore": { short: "RCB", logo: "https://upload.wikimedia.org/wikipedia/en/1/15/Royal_Challengers_Bangalore_Logo.svg" },
+    "Royal Challengers Bengaluru": { short: "RCB", logo: "https://upload.wikimedia.org/wikipedia/en/1/15/Royal_Challengers_Bangalore_Logo.svg" },
+    "Deccan Chargers": { short: "DC", logo: "https://upload.wikimedia.org/wikipedia/en/b/b8/Deccan_Chargers_logo.svg" },
+    "Pune Warriors India": { short: "PWI", logo: "images/logo.jpg" },
+    "Kochi Tuskers Kerala": { short: "KTK", logo: "images/logo.jpg" },
+    "Sunrisers Hyderabad": { short: "SRH", logo: "https://upload.wikimedia.org/wikipedia/en/8/81/Sunrisers_Hyderabad.svg" },
+    "Rising Pune Supergiant": { short: "RPS", logo: "images/logo.jpg" },
+    "Gujarat Lions": { short: "GL", logo: "images/logo.jpg" },
+    "Gujarat Titans": { short: "GT", logo: "https://upload.wikimedia.org/wikipedia/en/0/09/Gujarat_Titans_Logo.svg" },
+    "Lucknow Super Giants": { short: "LSG", logo: "https://upload.wikimedia.org/wikipedia/en/a/a9/Lucknow_Super_Giants_IPL_Logo.svg" }
+  };
+
+  function getYearKey(year) {
+    if (year === 2008) return "2007/08";
+    if (year === 2010) return "2009/10";
+    if (year === 2020) return "2020/21";
+    return String(year);
+  }
+
   // Generate Table HTML
   function getTableHTML(data) {
     if (!data || !data.length) {
       return `<div class="points-table-error">No data available for this season.</div>`;
     }
     
+    // Sort by position just in case
+    data.sort((a, b) => a.position - b.position);
+
     const rows = data.map((team, index) => {
       const isTopFour = index < 4 ? 'class="top-four"' : '';
+      const meta = teamLogos[team.team] || { short: team.team.substring(0, 3).toUpperCase(), logo: 'images/logo.jpg' };
+      
       return `
         <tr ${isTopFour}>
           <td class="team-col">
-            <img src="${team.logo || 'images/logo.jpg'}" alt="${team.short}" class="team-logo" loading="lazy"/>
-            <span>${window.innerWidth < 600 ? team.short : team.team}</span>
+            <img src="${meta.logo}" alt="${meta.short}" class="team-logo" loading="lazy"/>
+            <span>${window.innerWidth < 600 ? meta.short : team.team}</span>
           </td>
-          <td>${team.m}</td>
-          <td>${team.w}</td>
-          <td>${team.l}</td>
-          <td>${team.nr}</td>
-          <td>${team.nrr}</td>
-          <td><strong>${team.pts}</strong></td>
+          <td>${team.played}</td>
+          <td>${team.wins}</td>
+          <td>${team.losses}</td>
+          <td>${team.ties}</td>
+          <td><strong>${team.points}</strong></td>
         </tr>
       `;
     }).join('');
@@ -366,8 +398,7 @@ if (pointsTableTabs && pointsTableContainer) {
             <th>M</th>
             <th>W</th>
             <th>L</th>
-            <th>NR</th>
-            <th>NRR</th>
+            <th>T</th>
             <th>Pts</th>
           </tr>
         </thead>
@@ -378,24 +409,23 @@ if (pointsTableTabs && pointsTableContainer) {
     `;
   }
 
+  let fullPointsData = null;
+
   // Fetch or Load from cache
   async function loadStandings(year) {
-    if (standingsCache[year]) {
-      pointsTableContainer.innerHTML = getTableHTML(standingsCache[year]);
-      return;
-    }
-
     pointsTableContainer.innerHTML = getSkeletonHTML();
 
     try {
-      // Netlify function endpoint
-      const response = await fetch(`/.netlify/functions/standings?year=${year}`);
+      if (!fullPointsData) {
+        const response = await fetch(`ipl_yearwise_points_table.json`);
+        if (!response.ok) throw new Error('Failed to load JSON');
+        fullPointsData = await response.json();
+      }
+
+      const yearKey = getYearKey(year);
+      const data = fullPointsData[yearKey];
       
-      if (!response.ok) throw new Error('API Error');
-      
-      const data = await response.json();
-      standingsCache[year] = data;
-      pointsTableContainer.innerHTML = getTableHTML(data);
+      pointsTableContainer.innerHTML = getTableHTML(data || []);
     } catch (error) {
       console.error('Failed to fetch standings:', error);
       pointsTableContainer.innerHTML = `<div class="points-table-error">Unable to load data. Please try again later.</div>`;
