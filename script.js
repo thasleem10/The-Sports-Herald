@@ -287,3 +287,133 @@ if (newsImages.length > 0) {
     }
   });
 }
+
+// ── IPL Points Table Logic ────────────────────────────────────────────────
+const pointsTableTabs = document.getElementById('pointsTableTabs');
+const pointsTableContainer = document.getElementById('pointsTableContainer');
+
+if (pointsTableTabs && pointsTableContainer) {
+  const currentYear = new Date().getFullYear();
+  // Generate years from 2008 to current year
+  const years = Array.from({ length: currentYear - 2007 }, (_, i) => currentYear - i);
+  
+  let activeYear = currentYear;
+  const standingsCache = {};
+
+  // Initialize tabs
+  function initTabs() {
+    years.forEach(year => {
+      const btn = document.createElement('button');
+      btn.className = `points-table__tab ${year === activeYear ? 'active' : ''}`;
+      btn.dataset.year = year;
+      
+      let tabText = `${year}`;
+      if (year === currentYear) {
+        tabText += ` <span class="live-badge-tab">LIVE</span>`;
+      }
+      
+      btn.innerHTML = tabText;
+      
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.points-table__tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        activeYear = year;
+        loadStandings(year);
+      });
+      
+      pointsTableTabs.appendChild(btn);
+    });
+  }
+
+  // Generate Skeleton HTML
+  function getSkeletonHTML() {
+    return `
+      <div class="skeleton-container">
+        ${Array.from({ length: 10 }).map(() => '<div class="skeleton skeleton-row"></div>').join('')}
+      </div>
+    `;
+  }
+
+  // Generate Table HTML
+  function getTableHTML(data) {
+    if (!data || !data.length) {
+      return `<div class="points-table-error">No data available for this season.</div>`;
+    }
+    
+    const rows = data.map((team, index) => {
+      const isTopFour = index < 4 ? 'class="top-four"' : '';
+      return `
+        <tr ${isTopFour}>
+          <td class="team-col">
+            <img src="${team.logo || 'images/logo.jpg'}" alt="${team.short}" class="team-logo" loading="lazy"/>
+            <span>${window.innerWidth < 600 ? team.short : team.team}</span>
+          </td>
+          <td>${team.m}</td>
+          <td>${team.w}</td>
+          <td>${team.l}</td>
+          <td>${team.nr}</td>
+          <td>${team.nrr}</td>
+          <td><strong>${team.pts}</strong></td>
+        </tr>
+      `;
+    }).join('');
+
+    return `
+      <table class="points-table-grid">
+        <thead>
+          <tr>
+            <th style="text-align: left;">Team</th>
+            <th>M</th>
+            <th>W</th>
+            <th>L</th>
+            <th>NR</th>
+            <th>NRR</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    `;
+  }
+
+  // Fetch or Load from cache
+  async function loadStandings(year) {
+    if (standingsCache[year]) {
+      pointsTableContainer.innerHTML = getTableHTML(standingsCache[year]);
+      return;
+    }
+
+    pointsTableContainer.innerHTML = getSkeletonHTML();
+
+    try {
+      // Netlify function endpoint
+      const response = await fetch(`/.netlify/functions/standings?year=${year}`);
+      
+      if (!response.ok) throw new Error('API Error');
+      
+      const data = await response.json();
+      standingsCache[year] = data;
+      pointsTableContainer.innerHTML = getTableHTML(data);
+    } catch (error) {
+      console.error('Failed to fetch standings:', error);
+      pointsTableContainer.innerHTML = `<div class="points-table-error">Unable to load data. Please try again later.</div>`;
+    }
+  }
+
+  // Initialize
+  initTabs();
+  loadStandings(activeYear);
+  
+  // Handle resize for short team names on mobile
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if(standingsCache[activeYear]) {
+         pointsTableContainer.innerHTML = getTableHTML(standingsCache[activeYear]);
+      }
+    }, 250);
+  });
+}
